@@ -1,4 +1,9 @@
-# MELPA
+# MELPA - This is [melpa](https://github.com/melpa/melpa) clone merged my [PR](https://github.com/melpa/melpa/pull/5888) for [feather.el](https://github.com/conao3/feather.el)
+
+## purpose
+This repo track upstream, and create JSON recipe file by travis CI cron every day. (see <html|html-stable>/recipes.json)
+
+-----
 
 [![Build Status](https://travis-ci.org/melpa/melpa.png?branch=master)](https://travis-ci.org/melpa/melpa)
 
