@@ -1,5 +1,9 @@
 # MELPA - This is [melpa](https://github.com/melpa/melpa) clone merged my [PR](https://github.com/melpa/melpa/pull/5888) for [feather.el](https://github.com/conao3/feather.el)
 
+[![Repository Tag](https://img.shields.io/github/tag/conao3/feather-melpa.svg?style=flat-square)]
+[![Build Status](https://img.shields.io/travis/conao3/feather-melpa/master.svg?style=flat-square)]
+[![Repository License](https://img.shields.io/github/license/conao3/feather-melpa.svg?style=flat-square)]
+
 ## purpose
 This repo track upstream, and create JSON recipe file by travis CI cron every day. (see <html|html-stable>/recipes.json)
 
