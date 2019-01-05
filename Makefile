@@ -36,6 +36,36 @@ TIMEOUT := $(shell which timeout && echo "-k 60 600")
 
 all: packages packages/archive-contents json index
 
+## Conao Added rules start ################
+SSHKEY := ~/.ssh/id_rsa
+commit: $(SSHKEY)
+	echo "Commit by Travis-CI (job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL))" >> commit.log
+
+	git remote -v
+	git remote set-url origin git@github.com:conao3/feather-melpa.git
+	git remote add upstream https://github.com/melpa/melpa.git
+
+	git checkout master
+	git checkout -b travis-$$TRAVIS_JOB_NUMBER
+	git add .
+	git commit -m "Travis CI (job $$TRAVIS_JOB_NUMBER) [skip ci]"
+
+	git checkout master
+	git merge --no-ff travis-$$TRAVIS_JOB_NUMBER -m "Merge travis-$$TRAVIS_JOB_NUMBER [skip ci]"
+
+	git fetch upstream
+	git merge --no-ff upstream/master -m "Merge upstream [skip ci]"
+
+	git push origin master
+
+$(SSHKEY):
+	openssl aes-256-cbc -K $$encrypted_018677cccdfe_key -iv $$encrypted_018677cccdfe_iv -in .travis_rsa.enc -out ~/.ssh/id_rsa -d
+	chmod 600 ~/.ssh/id_rsa
+	git config --global user.name "conao3"
+	git config --global user.email conao3@gmail.com
+
+## Conao Added rules end ################
+
 ## General rules
 html: index
 index: json
