@@ -56,7 +56,7 @@ commit: $(SSHKEY)
 	git merge --no-ff travis-$$TRAVIS_JOB_NUMBER -m "Merge travis-$$TRAVIS_JOB_NUMBER [skip ci]"
 
 	git fetch upstream
-	git merge --no-ff upstream/master -m "Merge upstream [skip ci]"
+	-git merge --no-ff upstream/master -m "Merge upstream [skip ci]"
 
 	git push origin master
 
