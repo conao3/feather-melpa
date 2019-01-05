@@ -1,6 +1,20 @@
 language: generic
 dist: trusty
 
+git:
+  depth: 1
+
+env:
+  global:
+    - CURL="curl -fsSkL --retry 9 --retry-delay 9"
+  matrix:
+    - EMACS_VERSION=26.1
+
+install:
+  - $CURL -O https://github.com/npostavs/emacs-travis/releases/download/bins/emacs-bin-${EMACS_VERSION}.tar.gz
+  - tar xf emacs-bin-${EMACS_VERSION}.tar.gz -C /
+  - export EMACS_COMMAND=/tmp/emacs/bin/emacs
+
 branches:
   only:
     - master
