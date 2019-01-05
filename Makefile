@@ -38,6 +38,8 @@ all: packages packages/archive-contents json index
 
 ## Conao Added rules start ################
 SSHKEY := ~/.ssh/id_rsa
+DATEDETAIL := $(shell date '+%Y/%m/%d %H:%M:%S')
+
 commit: $(SSHKEY)
 	echo "Commit by Travis-CI (job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL))" >> commit.log
 
