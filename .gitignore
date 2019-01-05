@@ -32,3 +32,6 @@
 /service/*/log
 /sync
 /working/*
+
+# emacs-bin file (on travis commit)
+emacs-bin-*
