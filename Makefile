@@ -90,12 +90,6 @@ commit: $(SSHKEY)
 
 	git push origin master
 
-$(SSHKEY):
-	openssl aes-256-cbc -K $$encrypted_018677cccdfe_key -iv $$encrypted_018677cccdfe_iv -in .travis_rsa.enc -out ~/.ssh/id_rsa -d
-	chmod 600 ~/.ssh/id_rsa
-	git config --global user.name "conao3"
-	git config --global user.email conao3@gmail.com
-
 ## Conao Added rules end ################
 
 ## General rules
