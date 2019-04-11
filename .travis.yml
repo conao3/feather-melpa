@@ -31,7 +31,6 @@ script:
   - make fetch
   - make merge-upstream
   - make checkout
-  - make commit-source
   - make html/recipes.json
   - make html-stable/recipes.json
   - make commit-json && make merge-travis && make push
