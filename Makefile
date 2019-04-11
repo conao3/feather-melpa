@@ -65,26 +65,6 @@ merge-travis:
 push:
 	git push origin master
 
-commit: $(SSHKEY)
-	echo "Commit by Travis-CI (job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL))" >> commit.log
-
-	git remote -v
-	git remote set-url origin git@github.com:conao3/feather-melpa.git
-	git remote add upstream https://github.com/melpa/melpa.git
-
-	git checkout master
-	git checkout -b travis-$$TRAVIS_JOB_NUMBER
-	git add .
-	git commit -m "Travis CI (job $$TRAVIS_JOB_NUMBER) [skip ci]"
-
-	git checkout master
-	git merge --no-ff travis-$$TRAVIS_JOB_NUMBER -m "Merge travis-$$TRAVIS_JOB_NUMBER [skip ci]"
-
-	git fetch upstream
-	-git merge --no-ff upstream/master -m "Merge upstream [skip ci]"
-
-	git push origin master
-
 ## Conao Added rules end ################
 
 ## General rules
