@@ -37,8 +37,38 @@ TIMEOUT := $(shell which timeout && echo "-k 60 600")
 all: packages packages/archive-contents json index
 
 ## Conao Added rules start ################
-SSHKEY := ~/.ssh/id_rsa
 DATEDETAIL := $(shell date '+%Y/%m/%d %H:%M:%S')
+
+fetch:
+	git remote add upstream https://github.com/melpa/melpa.git
+	git remote -v
+	git fetch --all
+
+checkout:
+	git checkout master
+	git checkout -b travis-$$TRAVIS_JOB_NUMBER
+	echo "job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL)" >> commit.log
+
+commit-source:
+	git add .
+	git diff --cached --stat | tail -n1 >> commit.log
+	git commit --allow-empty -m "update source (job $$TRAVIS_JOB_NUMBER) [skip ci]"
+
+commit-json:
+	git add $(RECIPES) $(DETAILS)
+	git diff --cached --stat | tail -n1 >> commit.log
+	git commit --allow-empty -m "generate json (job $$TRAVIS_JOB_NUMBER) [skip ci]"
+
+merge-upstream:
+	git checkout master
+	git merge --no-ff upstream/master -m "merge upstream (job $$TRAVIS_JOB_NUMBER) [skip ci]"
+
+merge-travis:
+	git checkout master
+	git merge --no-ff travis-$$TRAVIS_JOB_NUMBER -m "merge travis-$$TRAVIS_JOB_NUMBER [skip ci]"
+
+push:
+	git push origin master
 
 commit: $(SSHKEY)
 	echo "Commit by Travis-CI (job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL))" >> commit.log
