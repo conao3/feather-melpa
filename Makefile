@@ -50,8 +50,8 @@ checkout:
 	echo "job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL)" >> commit.log
 
 commit-json:
-	git add $(RECIPES) $(DETAILS)
 	git diff --cached --stat | tail -n1 >> commit.log
+	git add .
 	git commit --allow-empty -m "generate json (job $$TRAVIS_JOB_NUMBER) [skip ci]"
 
 merge-upstream:
