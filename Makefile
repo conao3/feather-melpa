@@ -49,11 +49,6 @@ checkout:
 	git checkout -b travis-$$TRAVIS_JOB_NUMBER
 	echo "job $$TRAVIS_JOB_NUMBER at $(DATEDETAIL)" >> commit.log
 
-commit-source:
-	git add .
-	git diff --cached --stat | tail -n1 >> commit.log
-	git commit --allow-empty -m "update source (job $$TRAVIS_JOB_NUMBER) [skip ci]"
-
 commit-json:
 	git add $(RECIPES) $(DETAILS)
 	git diff --cached --stat | tail -n1 >> commit.log
