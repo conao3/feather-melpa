@@ -1,20 +1,7 @@
 language: generic
 dist: trusty
 
-git:
-  depth: 10
-
-env:
-  global:
-    - CURL="curl -fsSkL --retry 9 --retry-delay 9"
-  matrix:
-    - EMACS_VERSION=26.1
-
 install:
-  - $CURL -O https://github.com/npostavs/emacs-travis/releases/download/bins/emacs-bin-${EMACS_VERSION}.tar.gz
-  - tar xf emacs-bin-${EMACS_VERSION}.tar.gz -C /
-  - export EMACS_COMMAND=/tmp/emacs/bin/emacs
-
   - openssl aes-256-cbc -K $encrypted_73f414ac1fc7_key -iv $encrypted_73f414ac1fc7_iv -in .travis_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
   - git config --global user.name conao3
