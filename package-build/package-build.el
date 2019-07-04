@@ -954,7 +954,7 @@ artifacts, and return a list of the up-to-date archive entries."
              (mapcar (lambda (x)
                        (cond ((eq x :files) (setq frg t) x)
                              (frg (setq frg nil)
-                                  (mapcan
+                                  (cl-mapcan
                                    (lambda (y)
                                      (if (listp y)
                                          (if (eq (car y) :exclude)
