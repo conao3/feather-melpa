@@ -20,4 +20,6 @@ script:
   - make checkout
   - make html/recipes.json
   - make html-stable/recipes.json
+
+after_success:
   - make commit-json && make merge-travis && make push
